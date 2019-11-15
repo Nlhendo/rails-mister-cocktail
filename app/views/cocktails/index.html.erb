@@ -3,16 +3,28 @@
   <div class="row">
       <% @cocktails.each do |cocktail| %>
       <div class="cards">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://source.unsplash.com/500x400/?cocktail)">
+        <% if cocktail.photo.present? %>
+          <% urls = cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>
+        <% else %>
+          <% urls = cl_image_path 'default', height: 300, width: 400, crop: :fill %>
+        <% end %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= urls %>')">
           <%= link_to cocktail.name, cocktail_path(cocktail)%>
+
         </div>
       <% end %>
     </div>
   </div>
-  <div><%= link_to "Create a cocktail", new_cocktail_path %>
+  <%= link_to "Create a cocktail", new_cocktail_path %>
 </div>
+
+<!-- <div>
+  <%= cl_image_tag("ql6ozuh113w0i3xw1v4i",width: 400, height: 300, crop: :fill) %>
 </div>
 
+<div>
+<%= cl_image_tag("jvwpncwb0i55kkpoz6it",
+      width: 150, height: 150, crop: :thumb, gravity: :face) %>
+</div> -->
 
-
-
+<%= link_to "Create a cocktail", new_cocktail_path %>
