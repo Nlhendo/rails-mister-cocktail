@@ -1,1 +1,22 @@
 show.html.erb
+<h1><%= @cocktail.name %></h1>
+
+ <ul class="list-group">
+        <%  @cocktail.doses.each  do |dose| %>
+        <li><%= dose.ingredient.name %> <%= dose.description %></li>
+        <% end %>
+      </ul>
+
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+
+        <%= f.input :description, label: 'Dose' %>
+        <%= f.association :ingredient%>
+
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+
+
+<h5><%= link_to "See all cocktails", cocktails_path %></h5>
+
+
+

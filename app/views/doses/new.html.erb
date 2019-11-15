@@ -1,1 +1,7 @@
 new.html.erb
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description %>
+        <%= f.association :ingredient%>
+
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
