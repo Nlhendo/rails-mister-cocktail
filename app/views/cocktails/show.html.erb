@@ -1,10 +1,14 @@
 show.html.erb
+<div class= "container">
 <h1><%= @cocktail.name %></h1>
 <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
 
  <ul class="list-group">
         <%  @cocktail.doses.each  do |dose| %>
-        <li><%= dose.ingredient.name %> <%= dose.description %></li>
+        <li><%= dose.ingredient.name %> <%= dose.description %><%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-trash destroy_dose"></i>
+                <% end %></li>
+
 
         <% end %>
       </ul>
@@ -14,11 +18,19 @@ show.html.erb
         <%= f.input :description, label: 'Dose' %>
         <%= f.association :ingredient%>
 
+
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
 
-
+<div>
 <h5><%= link_to "See all cocktails", cocktails_path %></h5>
 
+<%= link_to "Delete", cocktail_path(@cocktail) ,
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+
+<%= link_to "edit", edit_cocktail_path(@cocktail) %>
+
+</div>
 
 

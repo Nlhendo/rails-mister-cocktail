@@ -5,10 +5,23 @@ new.html.erb
       <h1>Create a new Cocktail</h1>
       <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name %>
+          <label class="btn btn-primary">
+            Add a file!
+            <span style="display:none;">
+            <%= f.file_field :photo %>
+            </span>
+          </label>
+
         <%= f.input :photo %>
+
+
+
+
 
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
+      <button>submit</button>
     </div>
   </div>
 </div>
+

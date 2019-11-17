@@ -1,23 +1,52 @@
+<div class="banner">
+  <div class="banner-content">
+    <h1>Mr. Cocktail</h1>
+    <h3>
+      <span id="banner-typed-text"></span>
+    </h3>
+  </div>
+</div>
+
+<div class = "container">
 <h1>All Cocktails</h1>
-<div class="container">
-  <div class="row">
+<div class="cards">
       <% @cocktails.each do |cocktail| %>
-      <div class="cards">
-        <% if cocktail.photo.present? %>
-          <% urls = cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>
+      <% if cocktail.photo.start_with?("http") %>
+<%image_tag cocktail.photo %>
+<% end %>
+
+       <!--   <% if cocktail.photo.present? %>
+          <% urls = cl_image_path cocktail.photo %>
         <% else %>
-          <% urls = cl_image_path 'default', height: 300, width: 400, crop: :fill %>
-        <% end %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= urls %>')">
+
+          <% urls = cl_image_path cocktail.photo ='default'%>
+        <% end %> -->
+        <div class="card-category changes" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= urls %>')">
           <%= link_to cocktail.name, cocktail_path(cocktail)%>
 
         </div>
       <% end %>
     </div>
+
+
+    <div><%= link_to "Create a cocktail", new_cocktail_path, class: "btn btn-primary btn-lg" %></div>
+
+<!--   <%= link_to "Create a cocktail", new_cocktail_path %>
+<div class="cards">
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    Breakfast
   </div>
-  <%= link_to "Create a cocktail", new_cocktail_path %>
+
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/lunch.jpg)">
+    Lunch
+  </div>
+
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/dinner.jpg)">
+    Dinner
+  </div>
 </div>
 
+</div> -->
 <!-- <div>
   <%= cl_image_tag("ql6ozuh113w0i3xw1v4i",width: 400, height: 300, crop: :fill) %>
 </div>
@@ -27,4 +56,3 @@
       width: 150, height: 150, crop: :thumb, gravity: :face) %>
 </div> -->
 
-<%= link_to "Create a cocktail", new_cocktail_path %>
